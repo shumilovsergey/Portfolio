@@ -201,3 +201,24 @@ body {
 .tm-box-p {
     margin-bottom: 10px;
 }
+
+.contact-section {
+    height: 100%;
+    padding-top: 80px;
+    padding-bottom: 60px;
+
+}
+
+.form-group {
+    margin-bottom: 15px;
+
+}
+
+.footer-content {
+    columns: #666;
+    font-size: 32px;
+    font-style: italic;
+    margin-bottom: 25px;
+    margin-top: 35px;
+    
+}
