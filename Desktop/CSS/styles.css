@@ -103,14 +103,14 @@ body {
     width: 100%;
   } */
 
-  .blog-content {
+.blog-content {
       background: #f2f2f2;
       padding-bottom: 25px;
       max-width: 555px;
       margin: 0 auto;
   }
 
-  .blog-content span a {
+.blog-content span a {
       background: #fff none repeat scroll 0 0;
       border: 1px solid #ccc;
       border-radius: 10px;
@@ -137,4 +137,42 @@ body {
     display: inline-block;
     float: none;
     border-width: solid;
+    border: 1px;
 }
+
+.header-content2 {
+    background-image: url(https://www.free-css.com/assets/files/free-css-templates/preview/page196/conquer/assets/img/bg-2.jpg);
+    height: 400px;
+    
+    
+
+}
+
+.test {
+    text-align: center;
+    margin: auto;
+    padding-top: 150px;
+}
+
+.testimonial-content {
+    background-color: #f2f2f2;
+    height: 500px;
+    max-width: 260px;
+    margin: 0 auto 30px;
+}
+
+.content-link {
+    background: #fff none repeat scroll 0 0;
+    border: 1px;
+    border-radius: 10px;
+    color: #666;
+    display: inline-block;
+    font-size: 18px;
+    padding: 10px 30px;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+
+}
+
