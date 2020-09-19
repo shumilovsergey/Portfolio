@@ -92,16 +92,16 @@ body {
 }
 
 
-.img-wrap {
+/* .img-wrap {
     position: relative;
-  }
+  } */
 
-  .img-wrap h1 h4 {
+  /* .img-wrap h1 h4 {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-  }
+  } */
 
   .blog-content {
       background: #f2f2f2;
@@ -124,4 +124,17 @@ body {
 .about-section {
     height: 100%;
     padding-top: 70px;
+}
+
+.header-content {
+    background-image: url(https://www.free-css.com/assets/files/free-css-templates/preview/page196/conquer/assets/img/bg-1.jpg);
+    height: 400px;
+}
+
+.nav-item {
+
+    text-align: center;
+    display: inline-block;
+    float: none;
+    border-width: solid;
 }
