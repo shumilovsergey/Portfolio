@@ -176,3 +176,28 @@ body {
 
 }
 
+.testimornial-area {
+    margin: 60px 0;
+}
+
+.tm-box {
+    background-color: #f2f2f2;
+    max-width: 1140px;
+    width: 100%;
+
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+
+}
+
+.tm-box-description {
+    padding: 30px;
+}
+
+.tm-box-p {
+    margin-bottom: 10px;
+}
