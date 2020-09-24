@@ -42,7 +42,7 @@
         <!-- TASK LIST -->
 
         
-        <ul class="collection with-header">
+        <ul class="collection with-header" id="TaskListContainer">
 
             <li class="collection-item">
                 <div>Выкинуть мусор
@@ -60,54 +60,60 @@
                 </div>
             </li>
 
-            <li class="collection-item">
-                <div>Купить молоко
-                    <a href="#!" class="secondary-content">
-
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">border_color</i>
-                        </button>
-
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">delete</i>
-                        </button>
-                        
-                    </a>
-                </div>
-            </li>
-
-            <li class="collection-item">
-                <div>Полить цветы
-                    <a href="#!" class="secondary-content">
-
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">border_color</i>
-                        </button>
-
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">delete</i>
-                        </button>
-                        
-                    </a>
-                </div>
-            </li>
-
-            <li class="collection-item">
-                <div>Сварить суп
-                    <a href="#!" class="secondary-content">
-
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">border_color</i>
-                        </button>
-
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">delete</i>
-                        </button>
-                        
-                    </a>
-                </div>
-            </li>
         </ul>
+
+        <script>
+            
+            let TaskItems = [];
+
+            let task1 = {
+                id: 1,
+                text: 'Выкинуть мусор',
+                isCompleted: false,
+            };
+
+            let task2 = {
+                id: 2,
+                text: 'Полить цветы',
+                isCompleted: false,
+            };
+
+            let task3 = {
+                id: 3,
+                text: 'Сварить суп',
+                isCompleted: false,
+            };
+
+            TaskItems = [task1, task2, task3];
+
+            TaskItems.forEach(TaskItem => console.log(TaskItem));
+
+            // function RenderList() {
+            //     const TaskListContainer = document.getElementById(TaskListContainer);
+            //     let TaskItemDiv = '';
+
+            //     TaskItems.map(TaskItem => {
+
+            //         TaskItemDiv 
+
+            
+                    
+            let li_1 = document.createElement('li');
+            let li_2 = document.createElement('li');
+
+
+            li_1.innerHTML = 'text';
+            li_1.innerHTML = (<a class="btn-floating btn-large waves-effect waves-light blue darken-1"><i class="material-icons">add</i></a>).value;
+
+            TaskListContainer.append(li_1);
+
+
+
+
+
+        </script>
+
+
     </body>
 
 
