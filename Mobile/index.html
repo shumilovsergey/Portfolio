@@ -85,6 +85,8 @@
         const addButton = document.getElementById('addButton');
 
         addButton.addEventListener('click', createTask);
+
+        // addButton.onclick = createTask(); не работает?!
         
         function createTask() {
             const text = document.getElementById("TaskImput").value;
