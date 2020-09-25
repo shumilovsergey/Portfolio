@@ -96,7 +96,7 @@
                     text: text,
                     inComplete: false
                 }
-
+                console.log(task.id);
                 TaskItems.push(task);
                 document.getElementById('TaskImput').value = '';
                 renderList();
@@ -107,8 +107,17 @@
             }
         }
 
+        function delTask(id){
+            
+            TaskItems.forEach((TaskItem, i) => {
+                if (TaskItem.id === id) {
+                    TaskItems.splice(i, 1);
+                    renderList();
+                    return;
+                }
+            })
+        }
         
-
 
     </script>
 
