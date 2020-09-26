@@ -59,26 +59,33 @@
 
         function renderList() {
             let task = '';
+            let strike = '';
             TaskItems.forEach(TaskItem => {
+                if(TaskItem.inComplete){
+                    strike = '<strike>';
+                }else{
+                    strike = '';
+                }
                 task += `
             <li class="collection-item">
-                <div><span>${TaskItem.text}</span>
+                <div id= "crs_${TaskItem.id}">${strike}<span id= "crs_${TaskItem.id}">${TaskItem.text}</span>
                     <a href="#!" class="secondary-content">
 
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">border_color</i>
+                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action" id= "edt_${TaskItem.id}">
+                            <i class="material-icons" id= "edt_${TaskItem.id}">border_color</i>
                         </button>
 
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action">
-                            <i class="material-icons">delete</i>
+                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action" id= "del_${TaskItem.id}">
+                            <i class="material-icons" id= "del_${TaskItem.id}">delete</i>
                         </button>
             
                     </a>
                 </div>
             </li>`;
-
+            
             })
             TaskListContainer.innerHTML = task;
+
         }
 
         
@@ -96,7 +103,8 @@
                     text: text,
                     inComplete: false
                 }
-                console.log(task.id);
+                
+                
                 TaskItems.push(task);
                 document.getElementById('TaskImput').value = '';
                 renderList();
@@ -107,19 +115,50 @@
             }
         }
 
-        function delTask(id){
+
+        document.addEventListener('click', function(event){
+            let idEvent = event.target.getAttribute('id');
             
-            TaskItems.forEach((TaskItem, i) => {
-                if (TaskItem.id === id) {
-                    TaskItems.splice(i, 1);
-                    renderList();
-                    return;
-                }
-            })
-        }
-        
+            if (idEvent != null) {
+                let what = idEvent.slice(0, 3);
+                let where = idEvent.slice(4, 14);
+                // console.log(where);
+                // console.log(what);
+                
+                TaskItems.forEach((TaskItem, i) => {
+                    if (TaskItem.id == where){
+
+
+                        if (what == 'del'){
+                            TaskItems.splice(i, 1);
+                    
+                        }else if (what == 'edt'){
+                            console.log('function add');
+
+                        }else if (what == 'crs'){
+ 
+                            TaskItems[i].inComplete = !TaskItems[i].inComplete;
+
+                        }
+                         
+                    }
+                })
+
+                renderList();
+                
+
+
+            }
+            
+            
+            
+
+        });
 
     </script>
+
+
+    
 
 
 </body>
