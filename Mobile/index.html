@@ -1,74 +1,67 @@
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-</head>
-
-<body>
+  <body>
     <!-- NAVBAR -->
 
-
     <nav>
-        <div class="nav-wrapper blue lighten-2">
-            <a href="#" class="brand-logo center">TODOlist</a>
-        </div>
+      <div class="nav-wrapper blue lighten-2">
+        <a href="#" class="brand-logo center">TODOlist</a>
+      </div>
     </nav>
-
 
     <!-- INPUT BLOCK -->
 
-
     <div class="row">
-        <div class="input-field col s9">
+      <div class="input-field col s9">
+        <input value="" id="TaskImput" type="text" class="validate" />
+        <label class="active" for="first_name2">новая запись</label>
+      </div>
 
-            <input value="" id="TaskImput" type="text" class="validate">
-            <label class="active" for="first_name2">новая запись</label>
-
-        </div>
-
-        <div class="input-field col s3">
-
-            <a class="btn-floating btn-large waves-effect waves-light blue darken-1" id="addButton"><i
-                    class="material-icons">add</i></a>
-
-        </div>
+      <div class="input-field col s3">
+        <a
+          class="btn-floating btn-large waves-effect waves-light blue darken-1"
+          onclick="createTask()"
+          id="addButton"
+          ><i class="material-icons">add</i></a
+        >
+      </div>
     </div>
-
 
     <!-- TASK LIST -->
 
-
-    <ul class="collection with-header" id="TaskListContainer">
-
-
-
-    </ul>
+    <ul class="collection with-header" id="TaskListContainer"></ul>
 
     <script>
+      let TaskItems = [];
 
-        let TaskItems = [];
+      const TaskListContainer = document.getElementById("TaskListContainer");
 
-        const TaskListContainer = document.getElementById("TaskListContainer");
+      document.addEventListener("DOMContentLoaded", renderList());
 
-        document.addEventListener('DOMContentLoaded', renderList());
-
-        function renderList() {
-            let task = '';
-            let strike = '';
-            TaskItems.forEach(TaskItem => {
-                if(TaskItem.inComplete){
-                    strike = '<strike>';
-                }else{
-                    strike = '';
-                }
-                task += `
+      function renderList() {
+        let task = "";
+        let strike = "";
+        TaskItems.forEach((TaskItem) => {
+          if (TaskItem.isComplete) {
+            strike = "<strike>";
+          } else {
+            strike = "";
+          }
+          task += `
             <li class="collection-item">
-                <div id= "crs_${TaskItem.id}">${strike}<span id= "crs_${TaskItem.id}">${TaskItem.text}</span>
+                <div id="crs_${TaskItem.id}">${strike}<span id="crs_${TaskItem.id}">${TaskItem.text}</span>
                     <a href="#!" class="secondary-content">
 
                         <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action" id= "edt_${TaskItem.id}">
@@ -82,86 +75,56 @@
                     </a>
                 </div>
             </li>`;
-            
-            })
-            TaskListContainer.innerHTML = task;
-
-        }
-
-        
-        const addButton = document.getElementById('addButton');
-
-        addButton.addEventListener('click', createTask);
-
-        // addButton.onclick = createTask(); не работает?!
-        
-        function createTask() {
-            const text = document.getElementById("TaskImput").value;
-            if (text) {
-                const task = {
-                    id: '_' + Math.random().toString(36).substr(2, 9),
-                    text: text,
-                    inComplete: false
-                }
-                
-                
-                TaskItems.push(task);
-                document.getElementById('TaskImput').value = '';
-                renderList();
-
-            }else {
-                return;
-
-            }
-        }
-
-
-        document.addEventListener('click', function(event){
-            let idEvent = event.target.getAttribute('id');
-            
-            if (idEvent != null) {
-                let what = idEvent.slice(0, 3);
-                let where = idEvent.slice(4, 14);
-                // console.log(where);
-                // console.log(what);
-                
-                TaskItems.forEach((TaskItem, i) => {
-                    if (TaskItem.id == where){
-
-
-                        if (what == 'del'){
-                            TaskItems.splice(i, 1);
-                    
-                        }else if (what == 'edt'){
-                            console.log('function add');
-
-                        }else if (what == 'crs'){
- 
-                            TaskItems[i].inComplete = !TaskItems[i].inComplete;
-
-                        }
-                         
-                    }
-                })
-
-                renderList();
-                
-
-
-            }
-            
-            
-            
-
         });
+        TaskListContainer.innerHTML = task;
+      }
 
+      function createTask() {
+        const text = document.getElementById("TaskImput").value;
+        if (text) {
+          const task = {
+            id: "_" + Math.random().toString(36).substr(2, 9),
+            text: text,
+            isComplete: false,
+          };
+
+          TaskItems.push(task);
+          document.getElementById("TaskImput").value = "";
+          renderList();
+        } else {
+          return;
+        }
+      }
+
+      document.addEventListener("click", function (event) {
+        let idEvent = event.target.getAttribute("id");
+
+        if (idEvent != null) {
+          let what = idEvent.slice(0, 3);
+          let where = idEvent.slice(4, 14);
+          // console.log(where);
+          // console.log(what);
+
+          TaskItems.forEach((TaskItem, i) => {
+            if (TaskItem.id == where) {
+              if (what == "del") {
+                TaskItems.splice(i, 1);
+              } else if (what == "edt") {
+                console.log("function add");
+              } else if (what == "crs") {
+                TaskItems[i].isComplete = !TaskItems[i].isComplete;
+              }
+            }
+          });
+
+          renderList();
+        }
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.keyCode === 13) {
+          createTask();
+        }
+      });
     </script>
-
-
-    
-
-
-</body>
-
-
+  </body>
 </html>
