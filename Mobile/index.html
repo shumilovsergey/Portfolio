@@ -52,26 +52,34 @@
 
       function renderList() {
         let task = "";
-        let strike = "";
-        TaskItems.forEach((TaskItem) => {
+        let strike_open = "";
+        let strike_close = "";
+        TaskItems.forEach((TaskItem, i) => {
           if (TaskItem.isComplete) {
-            strike = "<strike>";
+            strike_open = "<s>";
+            strike_close = "</s>";
           } else {
-            strike = "";
+            strike_open = "";
+            strike_close = "";
           }
           task += `
             <li class="collection-item">
-                <div id="crs_${TaskItem.id}">${strike}<span id="crs_${TaskItem.id}">${TaskItem.text}</span>
+                <div><span onclick='strikeTask(${i})'>${strike_open}${TaskItem.text}${strike_close}</span>
                     <a href="#!" class="secondary-content">
 
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action" id= "edt_${TaskItem.id}">
-                            <i class="material-icons" id= "edt_${TaskItem.id}">border_color</i>
+                        <button class="waves-effect waves-light btn-small blue darken-1" 
+                        type="submit" name="action" 
+                        onclick='edditTask(${i})'>
+                            <i class="material-icons" id= " ">border_color</i>
                         </button>
 
-                        <button class="waves-effect waves-light btn-small blue darken-1" type="submit" name="action" id= "del_${TaskItem.id}">
-                            <i class="material-icons" id= "del_${TaskItem.id}">delete</i>
+                        <button
+                        class="waves-effect waves-light btn-small blue darken-1"
+                        type="submit" name="action"
+                        onclick="delTask(${i})">
+                            <i class="material-icons" >delete</i>
                         </button>
-            
+
                     </a>
                 </div>
             </li>`;
@@ -96,35 +104,50 @@
         }
       }
 
-      document.addEventListener("click", function (event) {
-        let idEvent = event.target.getAttribute("id");
+      // document.addEventListener("click", function (event) {
+      //   let idEvent = event.target.getAttribute("id");
 
-        if (idEvent != null) {
-          let what = idEvent.slice(0, 3);
-          let where = idEvent.slice(4, 14);
-          // console.log(where);
-          // console.log(what);
+      //   if (idEvent != null) {
+      //     let what = idEvent.slice(0, 3);
+      //     let where = idEvent.slice(4, 14);
+      //     // console.log(where);
+      //     // console.log(what);
 
-          TaskItems.forEach((TaskItem, i) => {
-            if (TaskItem.id == where) {
-              if (what == "del") {
-                TaskItems.splice(i, 1);
-              } else if (what == "edt") {
-                console.log("function add");
-              } else if (what == "crs") {
-                TaskItems[i].isComplete = !TaskItems[i].isComplete;
-              }
-            }
-          });
+      //     TaskItems.forEach((TaskItem, i) => {
+      //       if (TaskItem.id == where) {
+      //         if (what == "del") {
+      //           TaskItems.splice(i, 1);
+      //         } else if (what == "edt") {
+      //           console.log("function add");
+      //         } else if (what == "crs") {
+      //           TaskItems[i].isComplete = !TaskItems[i].isComplete;
+      //         }
+      //       }
+      //     });
 
-          renderList();
-        }
-      });
+      //     renderList();
+      //   }
+      // });
       document.addEventListener("keydown", function (event) {
         if (event.keyCode === 13) {
           createTask();
         }
       });
+      function delTask(i) {
+        TaskItems.splice(i, 1);
+        renderList();
+        return;
+      }
+      function edditTask(i) {
+        console.log(i);
+        return;
+      }
+      function strikeTask(i) {
+        let bul = !TaskItems[i].isComplete;
+        TaskItems[i].isComplete = bul;
+        renderList();
+        return;
+      }
     </script>
   </body>
 </html>
