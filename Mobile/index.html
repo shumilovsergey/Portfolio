@@ -45,8 +45,9 @@
 
     <script>
       let TaskItems = [];
+
       const TaskListContainer = document.getElementById("TaskListContainer");
-      const CopyTaskListContainer = TaskListContainer;
+
       document.addEventListener("DOMContentLoaded", renderList());
 
       function renderList() {
@@ -66,8 +67,8 @@
                 <div><span onclick='strikeTask(${i})'>${strike_open}${TaskItem.text}${strike_close}</span>
                     <a href="#!" class="secondary-content">
 
-                        <button class="waves-effect waves-light btn-small blue darken-1"
-                        type="submit" name="action"
+                        <button class="waves-effect waves-light btn-small blue darken-1" 
+                        type="submit" name="action" 
                         onclick='edditTask(${i})'>
                             <i class="material-icons" id= " ">border_color</i>
                         </button>
@@ -84,8 +85,8 @@
             </li>`;
         });
         TaskListContainer.innerHTML = task;
-        // return task;
       }
+
       function createTask() {
         const text = document.getElementById("TaskImput").value;
         if (text) {
@@ -102,6 +103,31 @@
           return;
         }
       }
+
+      // document.addEventListener("click", function (event) {
+      //   let idEvent = event.target.getAttribute("id");
+
+      //   if (idEvent != null) {
+      //     let what = idEvent.slice(0, 3);
+      //     let where = idEvent.slice(4, 14);
+      //     // console.log(where);
+      //     // console.log(what);
+
+      //     TaskItems.forEach((TaskItem, i) => {
+      //       if (TaskItem.id == where) {
+      //         if (what == "del") {
+      //           TaskItems.splice(i, 1);
+      //         } else if (what == "edt") {
+      //           console.log("function add");
+      //         } else if (what == "crs") {
+      //           TaskItems[i].isComplete = !TaskItems[i].isComplete;
+      //         }
+      //       }
+      //     });
+
+      //     renderList();
+      //   }
+      // });
       document.addEventListener("keydown", function (event) {
         if (event.keyCode === 13) {
           createTask();
@@ -113,34 +139,8 @@
         return;
       }
       function edditTask(i) {
-        let container_sayver = TaskListContainer.innerHTML;
-        let old_task_text = TaskItems[i].text;
-        TaskListContainer.innerHTML = `
-        <div class="row">
-          <div class="input-field col s9">
-            <input value="${old_task_text}" id="EdditTaskImput" type="text" class="validate" />
-            <label class="active" for="first_name2">редактировать запись</label>
-          </div>
-
-          <div class="input-field col s3">
-            <a
-              class="btn-floating btn-large waves-effect waves-light deep-purple lighten-3"
-              onclick="task_after_eddit(${i})"
-              id="addButton"
-              ><i class="material-icons">add</i></a
-            >
-          </div>
-        </div>
-        `;
-        TaskListContainer.innerHTML =
-          container_sayver + TaskListContainer.innerHTML;
+        console.log(i);
         return;
-      }
-
-      function task_after_eddit(i) {
-        const text = document.getElementById("EdditTaskImput").value;
-        TaskItems[i].text = text;
-        renderList();
       }
       function strikeTask(i) {
         let bul = !TaskItems[i].isComplete;
