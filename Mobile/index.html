@@ -104,30 +104,6 @@
         }
       }
 
-      // document.addEventListener("click", function (event) {
-      //   let idEvent = event.target.getAttribute("id");
-
-      //   if (idEvent != null) {
-      //     let what = idEvent.slice(0, 3);
-      //     let where = idEvent.slice(4, 14);
-      //     // console.log(where);
-      //     // console.log(what);
-
-      //     TaskItems.forEach((TaskItem, i) => {
-      //       if (TaskItem.id == where) {
-      //         if (what == "del") {
-      //           TaskItems.splice(i, 1);
-      //         } else if (what == "edt") {
-      //           console.log("function add");
-      //         } else if (what == "crs") {
-      //           TaskItems[i].isComplete = !TaskItems[i].isComplete;
-      //         }
-      //       }
-      //     });
-
-      //     renderList();
-      //   }
-      // });
       document.addEventListener("keydown", function (event) {
         if (event.keyCode === 13) {
           createTask();
