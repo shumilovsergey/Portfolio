@@ -44,9 +44,16 @@
     <ul class="collection with-header" id="TaskListContainer"></ul>
 
     <script>
-      let TaskItems = [];
       const TaskListContainer = document.getElementById("TaskListContainer");
-      const CopyTaskListContainer = TaskListContainer;
+      let TaskItems = [];
+      let box1 = [];
+      box1 = localStorage.getItem("items");
+      let box2 = JSON.parse(box1);
+      box2.forEach((el, ii) => {
+        if (el) {
+          TaskItems.push(box2[ii]);
+        }
+      });
       document.addEventListener("DOMContentLoaded", renderList());
 
       function renderList() {
@@ -95,6 +102,8 @@
           };
 
           TaskItems.push(task);
+          let TaskItems_JSON = JSON.stringify(TaskItems);
+          localStorage.setItem("items", TaskItems_JSON);
           document.getElementById("TaskImput").value = "";
           renderList();
         } else {
@@ -108,6 +117,8 @@
       });
       function delTask(i) {
         TaskItems.splice(i, 1);
+        let TaskItems_JSON = JSON.stringify(TaskItems);
+        localStorage.setItem("items", TaskItems_JSON);
         renderList();
         return;
       }
@@ -139,11 +150,15 @@
       function task_after_eddit(i) {
         const text = document.getElementById("EdditTaskImput").value;
         TaskItems[i].text = text;
+        let TaskItems_JSON = JSON.stringify(TaskItems);
+        localStorage.setItem("items", TaskItems_JSON);
         renderList();
       }
       function strikeTask(i) {
         let bul = !TaskItems[i].isComplete;
         TaskItems[i].isComplete = bul;
+        let TaskItems_JSON = JSON.stringify(TaskItems);
+        localStorage.setItem("items", TaskItems_JSON);
         renderList();
         return;
       }
