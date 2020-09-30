@@ -48,7 +48,7 @@
       let TaskItems = [];
       let localItems = JSON.parse(localStorage.getItem("items"));
       localItems.forEach((localItem, i) => {
-        TaskItems.push(localItems[i]);
+        TaskItems.push(localItem);
       });
       document.addEventListener("DOMContentLoaded", renderList());
 
@@ -98,7 +98,7 @@
           };
 
           TaskItems.push(task);
-          saveTasksLocal(TaskItems);
+          saveTasksLocal();
           document.getElementById("TaskImput").value = "";
           renderList();
         } else {
@@ -112,7 +112,7 @@
       });
       function delTask(i) {
         TaskItems.splice(i, 1);
-        saveTasksLocal(TaskItems);
+        saveTasksLocal();
         renderList();
         return;
       }
@@ -122,7 +122,7 @@
         TaskListContainer.innerHTML = `
         <div class="row">
           <div class="input-field col s9">
-            <input value="${old_task_text}" id="EdditTaskField" type="text" class="validate" />
+            <input value="${old_task_text}" id="EditTaskField" type="text" class="validate" />
             <label class="active" for="first_name2">редактировать запись</label>
           </div>
 
@@ -142,19 +142,19 @@
       }
 
       function editTask(i) {
-        TaskItems[i].text = document.getElementById("EdditTaskField").value;
-        saveTasksLocal(TaskItems);
+        TaskItems[i].text = document.getElementById("EditTaskField").value;
+        saveTasksLocal();
         renderList();
       }
       function strikeTask(i) {
         let bul = !TaskItems[i].isComplete;
         TaskItems[i].isComplete = bul;
-        saveTasksLocal(TaskItems);
+        saveTasksLocal();
         renderList();
         return;
       }
 
-      function saveTasksLocal(TaskItems) {
+      function saveTasksLocal() {
         localStorage.setItem("items", JSON.stringify(TaskItems));
       }
     </script>
