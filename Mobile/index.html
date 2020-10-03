@@ -43,7 +43,7 @@
 
     <ul class="collection with-header" id="TaskListContainer"></ul>
 
-    <script>
+    <!-- <script>
       const TaskListContainer = document.getElementById("TaskListContainer");
       let TaskItems = [];
       let localItems = JSON.parse(localStorage.getItem("items"));
@@ -53,32 +53,26 @@
       document.addEventListener("DOMContentLoaded", renderList());
 
       function renderList() {
-        let task = "";
-        let strike_open = "";
-        let strike_close = "";
+        let tasksHTML = "";
+
         TaskItems.forEach((TaskItem, i) => {
-          if (TaskItem.isComplete) {
-            strike_open = "<s>";
-            strike_close = "</s>";
-          } else {
-            strike_open = "";
-            strike_close = "";
-          }
-          task += `
+          let isComplete = TaskItem.isComplete ? "strikeItem" : "";
+
+          tasksHTML += `
             <li class="collection-item">
-                <div><span onclick='strikeTask(${i})'>${strike_open}${TaskItem.text}${strike_close}</span>
+                <div><span class ="${isComplete}" onclick="toggInCompleteTask(${TaskItem.id})">${TaskItem.text}</span>
                     <a href="#!" class="secondary-content">
 
-                        <button class="waves-effect waves-light btn-small blue darken-1"
-                        type="submit" name="action"
-                        onclick='openTaskEditor(${i})'>
+                        <button  btn-small blue darken-1"
+
+                        onclick='editTask(${TaskItem.id})'>
                             <i class="material-icons">border_color</i>
                         </button>
 
                         <button
-                        class="waves-effect waves-light btn-small blue darken-1"
-                        type="submit" name="action"
-                        onclick="delTask(${i})">
+                        btn-small blue darken-1"
+
+                        onclick="deleteTask('${TaskItem.id}')">
                             <i class="material-icons" >delete</i>
                         </button>
 
@@ -86,7 +80,7 @@
                 </div>
             </li>`;
         });
-        TaskListContainer.innerHTML = task;
+        TaskListContainer.innerHTML = tasksHTML;
       }
       function createTask() {
         const text = document.getElementById("TaskImput").value;
@@ -110,8 +104,13 @@
           createTask();
         }
       });
-      function delTask(i) {
-        TaskItems.splice(i, 1);
+      function deleteTask(id) {
+        TaskItems.forEach((TaskItem, i) => {
+          if (TaskItem.id == id) {
+            TaskItems.splice(i, 1);
+          }
+        });
+
         saveTasksLocal();
         renderList();
         return;
@@ -157,6 +156,6 @@
       function saveTasksLocal() {
         localStorage.setItem("items", JSON.stringify(TaskItems));
       }
-    </script>
+    </script> -->
   </body>
 </html>
